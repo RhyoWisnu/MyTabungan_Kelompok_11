@@ -27,7 +27,7 @@ def tampilkan_menu():
     print("1. Tambah Pendapatan")
     print("2. Tambah Pengeluaran")
     print("3. Cek Saldo")
-    print("4. Keluar")
+   
 
 # Fungsi dengan parameter dan return type
 def main():
@@ -45,11 +45,7 @@ def main():
             manajer_keuangan.tambah_pengeluaran(jumlah)
         elif pilihan == '3':
             print("Saldo Anda saat ini:", manajer_keuangan.cek_saldo())
-        elif pilihan == '4':
-            print("Terima kasih telah menggunakan sistem manajemen keuangan.")
-            break
-        else:
-            print("Pilihan tidak valid. Silakan pilih menu yang tersedia.")
+     
 
 if __name__ == "__main__":
     main()
