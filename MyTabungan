@@ -23,7 +23,7 @@ class Keuangan:
 
 # Fungsi tanpa parameter dan non-return type
 def tampilkan_menu():
-    print("=== SELAMAT DATANG DI MYTABUNGAN ===")
+    print("=== SELAMAT DATANG DI MY TABUNGAN ===")
     print("1. Tambah Pendapatan")
     print("2. Tambah Pengeluaran")
     print("3. Cek Saldo")
