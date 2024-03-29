@@ -1,49 +1,55 @@
-def catat_transaksi():
-    transaksi = []
+class Keuangan:
+    def __init__(self, saldo_awal):
+        self.saldo = saldo_awal
 
-    def tampilkan_riwayat():
-        print("\nRiwayat Transaksi:")
-        total_pengeluaran = 0
-        total_pendapatan = 0
-        for jenis, keterangan, nominal in transaksi:
-            print(f"{jenis}: {keterangan} - {nominal}")
-            if jenis == "Pengeluaran":
-                total_pengeluaran += nominal
-            else:
-                total_pendapatan += nominal
-        print("\nTotal Pengeluaran:", total_pengeluaran)
-        print("Total Pendapatan:", total_pendapatan)
+    # Method tanpa parameter dan non-return type
+    def tambah_pendapatan(self):
+        jumlah = float(input("Masukkan jumlah pendapatan: "))
+        self.saldo += jumlah
+        print("Pendapatan berhasil ditambahkan.")
+    
+    # Method dengan parameter dan non-return type
+    def tambah_pengeluaran(self, jumlah):
+        self.saldo -= jumlah
+        print("Pengeluaran berhasil ditambahkan.")
+    
+    # Method tanpa parameter dengan return type
+    def cek_saldo(self):
+        return self.saldo
 
-    def catat_pengeluaran(keterangan, nominal):
-        transaksi.append(("Pengeluaran", keterangan, nominal))
-        print("Pengeluaran berhasil dicatat.")
+    # Method dengan parameter dan return type
+    def hitung_total(self, pendapatan, pengeluaran):
+        return pendapatan - pengeluaran
 
-    def catat_pendapatan(keterangan, nominal):
-        transaksi.append(("Pendapatan", keterangan, nominal))
-        print("Pendapatan berhasil dicatat.")
+# Fungsi tanpa parameter dan non-return type
+def tampilkan_menu():
+    print("=== SISTEM MANAJEMEN KEUANGAN ===")
+    print("1. Tambah Pendapatan")
+    print("2. Tambah Pengeluaran")
+    print("3. Cek Saldo")
+    print("4. Keluar")
+
+# Fungsi dengan parameter dan return type
+def main():
+    saldo_awal = float(input("Masukkan saldo awal: "))
+    manajer_keuangan = Keuangan(saldo_awal)
 
     while True:
-        print("\nMenu:")
-        print("1. Catat Pengeluaran")
-        print("2. Catat Pendapatan")
-        print("3. Tampilkan Riwayat Transaksi")
-        print("4. Keluar")
-        pilihan = input("Pilih menu (1/2/3/4): ")
+        tampilkan_menu()
+        pilihan = input("Pilih menu: ")
 
         if pilihan == '1':
-            keterangan = input("Masukkan keterangan pengeluaran: ")
-            nominal = float(input("Masukkan jumlah pengeluaran: "))
-            catat_pengeluaran(keterangan, nominal)
+            manajer_keuangan.tambah_pendapatan()
         elif pilihan == '2':
-            keterangan = input("Masukkan keterangan pendapatan: ")
-            nominal = float(input("Masukkan jumlah pendapatan: "))
-            catat_pendapatan(keterangan, nominal)
+            jumlah = float(input("Masukkan jumlah pengeluaran: "))
+            manajer_keuangan.tambah_pengeluaran(jumlah)
         elif pilihan == '3':
-            tampilkan_riwayat()
+            print("Saldo Anda saat ini:", manajer_keuangan.cek_saldo())
         elif pilihan == '4':
-            print("Terima kasih telah menggunakan program ini.")
+            print("Terima kasih telah menggunakan sistem manajemen keuangan.")
             break
         else:
-            print("Pilihan tidak valid. Silakan pilih menu yang benar.")
+            print("Pilihan tidak valid. Silakan pilih menu yang tersedia.")
 
-catat_transaksi()
+if __name__ == "__main__":
+    main()
