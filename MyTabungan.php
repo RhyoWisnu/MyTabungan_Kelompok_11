@@ -1,55 +1,66 @@
-class Keuangan:
-    def __init__(self, saldo_awal):
-        self.saldo = saldo_awal
+<?php
 
-    # Method tanpa parameter dan non-return type
-    def tambah_pendapatan(self):
-        jumlah = float(input("Masukkan jumlah pendapatan: "))
-        self.saldo += jumlah
-        print("Pendapatan berhasil ditambahkan.")
-    
-    # Method dengan parameter dan non-return type
-    def tambah_pengeluaran(self, jumlah):
-        self.saldo -= jumlah
-        print("Pengeluaran berhasil ditambahkan.")
-    
-    # Method tanpa parameter dengan return type
-    def cek_saldo(self):
-        return self.saldo
+function catat_transaksi() {
+    $transaksi = [];
 
-    # Method dengan parameter dan return type
-    def hitung_total(self, pendapatan, pengeluaran):
-        return pendapatan - pengeluaran
+    function tampilkan_riwayat() {
+        global $transaksi;
+        echo "\nRiwayat Transaksi:\n";
+        $total_pengeluaran = 0;
+        $total_pendapatan = 0;
+        foreach ($transaksi as $data) {
+            list($jenis, $keterangan, $nominal) = $data;
+            echo "$jenis: $keterangan - $nominal\n";
+            if ($jenis == "Pengeluaran") {
+                $total_pengeluaran += $nominal;
+            } else {
+                $total_pendapatan += $nominal;
+            }
+        }
+        echo "\nTotal Pengeluaran: $total_pengeluaran\n";
+        echo "Total Pendapatan: $total_pendapatan\n";
+    }
 
-# Fungsi tanpa parameter dan non-return type
-def tampilkan_menu():
-    print("=== Selamat Datang Di MyTabungan ===")
-    print("1. Tambah Pendapatan")
-    print("2. Tambah Pengeluaran")
-    print("3. Cek Saldo")
-    print("4. Keluar")
+    function catat_pengeluaran($keterangan, $nominal) {
+        global $transaksi;
+        $transaksi[] = array("Pengeluaran", $keterangan, $nominal);
+        echo "Pengeluaran berhasil dicatat.\n";
+    }
 
-# Fungsi dengan parameter dan return type
-def main():
-    saldo_awal = float(input("Masukkan saldo awal: "))
-    manajer_keuangan = Keuangan(saldo_awal)
+    function catat_pendapatan($keterangan, $nominal) {
+        global $transaksi;
+        $transaksi[] = array("Pendapatan", $keterangan, $nominal);
+        echo "Pendapatan berhasil dicatat.\n";
+    }
 
-    while True:
-        tampilkan_menu()
-        pilihan = input("Pilih menu: ")
+    while (true) {
+        echo "\nMenu:\n";
+        echo "1. Catat Pengeluaran\n";
+        echo "2. Catat Pendapatan\n";
+        echo "3. Tampilkan Riwayat Transaksi\n";
+        echo "4. Keluar\n";
+        $pilihan = readline("Pilih menu (1/2/3/4): ");
 
-        if pilihan == '1':
-            manajer_keuangan.tambah_pendapatan()
-        elif pilihan == '2':
-            jumlah = float(input("Masukkan jumlah pengeluaran: "))
-            manajer_keuangan.tambah_pengeluaran(jumlah)
-        elif pilihan == '3':
-            print("Saldo Anda saat ini:", manajer_keuangan.cek_saldo())
-        elif pilihan == '4':
-            print("Terima kasih telah menggunakan sistem manajemen keuangan.")
-            break
-        else:
-            print("Pilihan tidak valid. Silakan pilih menu yang tersedia.")
+        if ($pilihan == '1') {
+            $keterangan = readline("Masukkan keterangan pengeluaran: ");
+            $nominal = readline("Masukkan jumlah pengeluaran: ");
+            catat_pengeluaran($keterangan, $nominal);
+        } elseif ($pilihan == '2') {
+            $keterangan = readline("Masukkan keterangan pendapatan: ");
+            $nominal = readline("Masukkan jumlah pendapatan: ");
+            catat_pendapatan($keterangan, $nominal);
+        } elseif ($pilihan == '3') {
+            tampilkan_riwayat();
+        } elseif ($pilihan == '4') {
+            echo "Terima kasih telah menggunakan program ini.\n";
+            break;
+        } else {
+            echo "Pilihan tidak valid. Silakan pilih menu yang benar.\n";
+        }
+    }
+}
 
-if __name__ == "__main__":
-    main()
+catat_transaksi();
+
+?>
+
