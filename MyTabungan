@@ -23,12 +23,13 @@ def catat_transaksi():
         print("Pendapatan berhasil dicatat.")
 
     while True:
-        print("\nMenu:")
+        print ("Selamat Datang Di MyTabungan")
+        print("Menu:")
         print("1. Catat Pengeluaran")
         print("2. Catat Pendapatan")
         print("3. Tampilkan Riwayat Transaksi")
         print("4. Keluar")
-        pilihan = input("Pilih menu (1/2/3/4): ")
+        pilihan = input("Pilih menu: ")
 
         if pilihan == '1':
             keterangan = input("Masukkan keterangan pengeluaran: ")
@@ -41,7 +42,7 @@ def catat_transaksi():
         elif pilihan == '3':
             tampilkan_riwayat()
         elif pilihan == '4':
-            print("Terima kasih telah menggunakan program ini.")
+            print("Terima kasih telah menggunakan MyTabungan.")
             break
         else:
             print("Pilihan tidak valid. Silakan pilih menu yang benar.")
