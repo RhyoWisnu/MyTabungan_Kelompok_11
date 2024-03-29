@@ -25,9 +25,9 @@ def catat_transaksi():
     while True:
         print ("Selamat Datang Di MyTabungan")
         print("Menu:")
-        print("1. Catat Pengeluaran")
-        print("2. Catat Pendapatan")
-        print("3. Tampilkan Riwayat Transaksi")
+        print("1. Pengeluaran")
+        print("2. Pendapatan")
+        print("3. Cek Saldo")
         print("4. Keluar")
         pilihan = input("Pilih menu: ")
 
